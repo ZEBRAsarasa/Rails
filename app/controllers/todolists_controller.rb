@@ -1,7 +1,7 @@
 class TodolistsController < ApplicationController
   def new
     #Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する
-    @list =List.new
+    @list = List.new
   end
 
   def create
@@ -22,7 +22,6 @@ class TodolistsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-
   end
 
   def edit
@@ -33,6 +32,13 @@ class TodolistsController < ApplicationController
     list = List.find(params[:id])
     list.update(list_params)
     redirect_to todolist_path(list.id)
+
+  end
+
+  def destroy
+    list = List.find(params[:id])
+    list.destroy
+    redirect_to todolists_path
 
   end
 
